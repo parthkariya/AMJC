@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/glightboxex.css" type="text/css" />
+    <link rel="stylesheet" href="css/stylelibox.css" type="text/css" />
+    <script src="JG.js"></script>
+  </head>
+  <body>
+    <section id="examples" class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>
+              <i class="fa fa-camera-retro heading-icon" aria-hidden="true"></i>
+              Simple Image Gallery
+            </h3>
+
+            <ul class="box-container three-cols">
+              <li class="box">
+                <div class="inner">
+                  <a href="images/2_Last/001.jpg" class="glightbox">
+                    <img src="images/2_Last/001.jpg" alt="image" />
+                  </a>
+                </div>
+              </li>
+              <li class="box">
+                <div class="inner">
+                  <a href="images/2_Last/002.jpg" class="glightbox">
+                    <img src="images/2_Last/002.jpg" alt="image" />
+                  </a>
+                </div>
+              </li>
+              <li class="box">
+                <div class="inner">
+                  <a href="images/2_Last/003.jpg" class="glightbox">
+                    <img src="images/2_Last/003.jpg" alt="image" />
+                  </a>
+                </div>
+              </li>
+              <li class="box">
+                <div class="inner">
+                  <a href="demo/img/large/gm4.jpg" class="glightbox">
+                    <img src="demo/img/small/gm4.jpg" alt="image" />
+                  </a>
+                </div>
+              </li>
+              <li class="box">
+                <div class="inner">
+                  <a href="demo/img/large/gm5.jpg" class="glightbox">
+                    <img src="demo/img/small/gm5.jpg" alt="image" />
+                  </a>
+                </div>
+              </li>
+              <li class="box">
+                <div class="inner">
+                  <a href="demo/img/large/gm6.jpg" class="glightbox">
+                    <img src="demo/img/small/gm6.jpg" alt="image" />
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      var lightbox = GLightbox();
+      lightbox.on("open", (target) => {
+        console.log("lightbox opened");
+      });
+      var lightboxDescription = GLightbox({
+        selector: ".glightbox2",
+      });
+      var lightboxVideo = GLightbox({
+        selector: ".glightbox3",
+      });
+      lightboxVideo.on("slide_changed", ({ prev, current }) => {
+        console.log("Prev slide", prev);
+        console.log("Current slide", current);
+
+        const { slideIndex, slideNode, slideConfig, player } = current;
+
+        if (player) {
+          if (!player.ready) {
+            // If player is not ready
+            player.on("ready", (event) => {
+              // Do something when video is ready
+            });
+          }
+
+          player.on("play", (event) => {
+            console.log("Started play");
+          });
+
+          player.on("volumechange", (event) => {
+            console.log("Volume change");
+          });
+
+          player.on("ended", (event) => {
+            console.log("Video ended");
+          });
+        }
+      });
+
+      var lightboxInlineIframe = GLightbox({
+        selector: ".glightbox4",
+      });
+
+      /* var exampleApi = GLightbox({ selector: null });
+            exampleApi.insertSlide({
+                href: 'https://picsum.photos/1200/800',
+            });
+            exampleApi.insertSlide({
+                width: '500px',
+                content: '<p>Example</p>'
+            });
+            exampleApi.insertSlide({
+                href: 'https://www.youtube.com/watch?v=WzqrwPhXmew',
+            });
+            exampleApi.insertSlide({
+                width: '200vw',
+                content: document.getElementById('inline-example')
+            });
+            exampleApi.open(); */
+    </script>
+  </body>
+</html>
